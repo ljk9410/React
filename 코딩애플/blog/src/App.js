@@ -6,6 +6,9 @@ function App() {
 
   let [글제목, 글제목변경] = useState(['상도 맛집', '흑석 맛집', '강남 맛집']);
   let [따봉, 따봉변경] = useState(0);
+
+  let [modal, modalChange] = useState(false);
+  
   function 제목바꾸기() {
     let newArray = [...글제목];
 
@@ -35,8 +38,12 @@ function App() {
         <hr/>
       </div>
 
-      <Modal />
-
+      <button onClick={ () => { modalChange(!modal) } }>modal</button>
+      {
+        modal === true
+        ? <Modal></Modal>
+        : null
+      }
     </div>
   );
 }
