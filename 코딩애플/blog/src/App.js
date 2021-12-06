@@ -5,8 +5,7 @@ import './App.css';
 function App() {
 
   let [글제목, 글제목변경] = useState(['상도 맛집', '흑석 맛집', '강남 맛집']);
-  let [따봉, 따봉변경] = useState(0);
-
+  let [따봉, 따봉변경] = useState([0, 1, 2]);
   let [modal, modalChange] = useState(false);
   
   function 제목바꾸기() {
@@ -22,7 +21,7 @@ function App() {
         <div>개발 Blog</div>
       </div>
       <button onClick={ 제목바꾸기 }>버튼</button>
-      <div className="list">
+      {/* <div className="list">
         <h3> { 글제목[0] } <span onClick={ () => { 따봉변경(따봉 + 1) } }>👍</span> { 따봉 } </h3>
         <p>2월 17일 발행</p>
         <hr/>
@@ -36,7 +35,24 @@ function App() {
         <h3> { 글제목[2] } </h3>
         <p>2월 17일 발행</p>
         <hr/>
-      </div>
+      </div> */}
+
+      {
+        글제목.map((글, i) => {
+          return (
+            <div className="list">
+                <h3> { 글 } </h3>
+                <p>2월 17일 발행</p>
+                <hr/>
+            </div>  
+          ) 
+        })
+      }
+
+
+
+
+
 
       <button onClick={ () => { modalChange(!modal) } }>modal</button>
       {
