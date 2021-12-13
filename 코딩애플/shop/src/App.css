@@ -2,9 +2,26 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.jumbotron {
+  color: white;
+  width: 100%;
+  height: 50vh;
+  background-image: url('./background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jumbotron button {
+  color: white;
+  background-color: rgba(0, 110, 255, 1);
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
