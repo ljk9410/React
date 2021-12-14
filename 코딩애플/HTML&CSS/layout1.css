@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+}
+
+.main-background {
+    width: 100%;
+    height: 50vh;
+    background-image: url('./background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 1px;
+}
+
+.main-title {
+    color: white;
+    font-size: 40px;
+    margin-top: 40px;
+}

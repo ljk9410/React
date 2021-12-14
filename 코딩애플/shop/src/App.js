@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown,Form, FormControl, Button } from 'react-bootstrap';
 import './App.css';
 import shoeData from './data.js';
+import { Link, Route, Switch } from 'react-router-dom';
+import Detail from './components/Detail.js';
 
 function App() {
   let [shoes, shoes변경] = useState(shoeData);
@@ -18,8 +20,8 @@ function App() {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">Link</Nav.Link>
+              <Nav.Link ><Link to="/">Home</Link></Nav.Link>
+              <Nav.Link ><Link to="/detail">Detail</Link></Nav.Link>
               <NavDropdown title="Link" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
@@ -46,24 +48,34 @@ function App() {
       </Navbar>
 
 
-      <div className='jumbotron'>
-        <div>
-          <h1>20% Season Off</h1>
-          <p>코딩애플을 통해 배우는 react 수업. 이번에는 쇼핑몰 만들기 프로젝트를 진행합니다</p>
-          <button>버튼</button>
-        </div>
-      </div>
+      <Switch>
+        <Route exact path="/">
+          <div className='jumbotron'>
+            <div>
+              <h1>20% Season Off</h1>
+              <p>코딩애플을 통해 배우는 react 수업. 이번에는 쇼핑몰 만들기 프로젝트를 진행합니다</p>
+              <button>버튼</button>
+            </div>
+          </div>
+          
+          <div className='container'>
+            <div className='row'>
+              {
+                shoes.map((shoe, i)=>{
+                  return (<ShoeList shoe={ shoe } key={ i + 1 }></ShoeList>)
+                })
+              }
+            </div>
+          </div>
+        </Route>
+        
 
+        <Route path='/detail/:id'>
+          <Detail shoes={ shoes }/>
+        </Route>
+        {/* <Route path="/detail" component={ Detail }></Route> */}
 
-      <div className='container'>
-        <div className='row'>
-          {
-            shoes.map((shoe, i)=>{
-              return (<ShoeList shoe={ shoe } key={ i + 1 }></ShoeList>)
-            })
-          }
-        </div>
-      </div>
+      </Switch>
 
     </div>
   );
@@ -79,4 +91,7 @@ function ShoeList(props) {
     </div>
   )
 }
+
+
+
 export default App;
