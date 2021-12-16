@@ -1,0 +1,34 @@
+@import './reset.scss';
+
+$mainColor: #ff0000;
+
+.red {
+    color: $mainColor;
+}
+
+.container {
+    h4 {
+        color: black;
+    }
+}
+
+@mixin 함수() {
+    background: #eeeeee;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    p {
+        margin: 0;
+    }
+}
+
+.my-alert {
+    @include 함수()
+}
+
+.my-alert2 {
+    @extend .my-alert;
+    background: #ffe591;
+}
