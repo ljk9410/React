@@ -38,9 +38,6 @@ function Detail(props) {
       <Title className="red">상세페이지</Title>
     </Box>
 
-    <input onChange={ (e) => { changeInputData(e.target.value) }}></input>
-    
-    
     {
       alert === true
       ?
@@ -59,8 +56,11 @@ function Detail(props) {
         <h4 className="pt-5">{ props.shoes[itemId].title }</h4>
         <p>{ props.shoes[itemId].content}</p>
         <p>{ props.shoes[itemId].price }</p>
-        <button className="btn btn-danger">주문하기</button> 
-        <button className="btn btn-danger" onClick={ ()=> {
+
+        <Remain 재고={ props.재고 }></Remain>
+
+        <button className="btn btn-danger" onClick={()=>{ props.재고변경([9,11,12])}}>주문하기</button> 
+        <button className="btn btn-danger" onClick={()=> {
           history.goBack()
           // history.push('/') -> 해당 url로 이동 
         }}>뒤로가기</button> 
@@ -68,6 +68,12 @@ function Detail(props) {
     </div>
   </div> 
   )
-  }
+}
+
+function Remain(props) {
+  return (
+    <p>재고: { props.재고 }</p>
+  )
+}
 
   export default Detail;

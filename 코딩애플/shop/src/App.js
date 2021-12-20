@@ -9,6 +9,7 @@ import axios from 'axios';
 function App() {
   let [shoes, shoes변경] = useState(shoeData);
   let [loading, loading변경] = useState(false);
+  let [재고, 재고변경] = useState([10, 11, 12]);
 
   return (
     <div className="App">
@@ -97,7 +98,7 @@ function App() {
         
 
         <Route path='/detail/:id'>
-          <Detail shoes={ shoes }/>
+          <Detail shoes={ shoes } 재고={ 재고 } 재고변경={ 재고변경 }/>
         </Route>
         {/* <Route path="/detail" component={ Detail }></Route> */}
 
