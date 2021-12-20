@@ -4,9 +4,11 @@ import './App.css';
 import shoeData from './data.js';
 import { Link, Route, Switch } from 'react-router-dom';
 import Detail from './components/Detail.js';
+import axios from 'axios';
 
 function App() {
   let [shoes, shoes변경] = useState(shoeData);
+  let [loading, loading변경] = useState(false);
 
   return (
     <div className="App">
@@ -66,6 +68,30 @@ function App() {
                 })
               }
             </div>
+
+            {
+              loading === true
+              ? <Loading></Loading>
+              : null
+            }
+            <button className='btn btn-primary' onClick={ ()=>{
+              loading변경(true)
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+              .then((res)=>{
+                // let data = res.data
+                // let newShoesData = [...shoes]
+
+                // data.forEach( (a)=>{
+                //   newShoesData.push(a)
+                // } )
+                // shoes변경(newShoesData)
+                loading변경(false)
+                shoes변경([...shoes, ...res.data])
+              })
+              .catch(()=>{
+                console.log('실패했습니다')
+              })
+            } }>더보기</button>
           </div>
         </Route>
         
@@ -92,6 +118,10 @@ function ShoeList(props) {
   )
 }
 
-
+function Loading() {
+  return (
+    <div>로딩중입니다...</div>
+  )
+}
 
 export default App;
