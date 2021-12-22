@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown,Form, FormControl, Button } from 'react-bootstrap';
 import './App.css';
 import shoeData from './data.js';
 import { Link, Route, Switch } from 'react-router-dom';
 import Detail from './components/Detail.js';
 import axios from 'axios';
+import Cart from './components/Cart.js';
+
+
+let 재고context = React.createContext();
+
 
 function App() {
   let [shoes, shoes변경] = useState(shoeData);
@@ -62,13 +67,17 @@ function App() {
           </div>
           
           <div className='container'>
-            <div className='row'>
-              {
-                shoes.map((shoe, i)=>{
-                  return (<ShoeList shoe={ shoe } key={ i + 1 }></ShoeList>)
-                })
-              }
-            </div>
+
+            <재고context.Provider value={ 재고 }>
+              <div className='row'>
+                {
+                  shoes.map((shoe, i)=>{
+                    return (<ShoeList shoe={ shoe } key={ i + 1 }></ShoeList>)
+                  })
+                }
+              </div>
+            </재고context.Provider>
+
 
             {
               loading === true
@@ -96,6 +105,9 @@ function App() {
           </div>
         </Route>
         
+        <Route path='/cart'>
+            <Cart></Cart>
+        </Route>
 
         <Route path='/detail/:id'>
           <Detail shoes={ shoes } 재고={ 재고 } 재고변경={ 재고변경 }/>
@@ -109,13 +121,25 @@ function App() {
 }
 
 function ShoeList(props) {
+  let 재고 = useContext(재고context);
   let count = props.shoe.id + 1;
   return(
     <div className='col-md-4'>
-      <img src={ 'https://codingapple1.github.io/shop/shoes' + count + '.jpg'} width='100%'></img>
+      <Link to={`/detail/${count - 1}`}>
+        <img src={ 'https://codingapple1.github.io/shop/shoes' + count + '.jpg'} width='100%'></img>
+      </Link>
       <h4>{ props.shoe.title }</h4>
       <p>{ props.shoe.content }</p>
+      <Test></Test>
     </div>
+  )
+}
+
+function Test() {
+  let 재고 = useContext(재고context);
+
+  return (
+    <p>재고: {재고}</p>
   )
 }
 
