@@ -67,7 +67,7 @@ function Detail(props) {
         <Remain 재고={ props.재고 }></Remain>
 
         <button className="btn btn-danger" onClick={()=>{
-            props.dispatch({ type: '장바구니추가', payload: { id: itemId, name: props.shoes[itemId].content } })
+            props.dispatch({ type: '장바구니추가', payload: { id: itemId, name: props.shoes[itemId].title, quantity: 1 } })
             history.push('/cart');
           }}>주문하기</button> 
         <button className="btn btn-danger" onClick={()=> {

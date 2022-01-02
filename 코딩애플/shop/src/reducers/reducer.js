@@ -3,17 +3,15 @@ let init = []
 export function reducer(state = init, action) {
     if (action.type === '장바구니추가') {
         let copy = [...state];
-        let check = 0;
-
-        console.log(copy);
-        copy.forEach((a,i) => {
-            if (a.id === action.payload.id) {
-                a.quantity++;
-                check++;
-            }
-        })
-        if (check !== 1)
+        let same;
+        
+        same = copy.find(e => e.id === action.payload.id);
+        console.log(same);
+        if (same) {
+            same.quantity++;
+        } else {
             copy.push(action.payload);
+        }
         return copy;
     }
     else if ( action.type === '수량증가' ) {
