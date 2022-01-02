@@ -6,7 +6,6 @@ export function reducer(state = init, action) {
         let same;
         
         same = copy.find(e => e.id === action.payload.id);
-        console.log(same);
         if (same) {
             same.quantity++;
         } else {
@@ -17,14 +16,14 @@ export function reducer(state = init, action) {
     else if ( action.type === '수량증가' ) {
         let copy = [...state];
 
-        copy[0].quantity++;
+        copy[action.payload].quantity++;
         return copy;
     }
     else if (action.type === '수량감소') {
         let copy = [...state];
 
-        if (copy[0].quantity > 0)
-        copy[0].quantity--;
+        if (copy[action.payload].quantity > 0)
+        copy[action.payload].quantity--;
         return copy;
     }
     else return state;

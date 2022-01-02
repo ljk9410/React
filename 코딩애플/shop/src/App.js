@@ -6,6 +6,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 import Detail from './components/Detail.js';
 import axios from 'axios';
 import Cart from './components/Cart.js';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 let 재고context = React.createContext();
@@ -122,12 +123,12 @@ function App() {
 
 function ShoeList(props) {
   let 재고 = useContext(재고context);
-  let count = props.shoe.id + 1;
+  let history = useHistory();
+  let id = props.shoe.id;
+
   return(
-    <div className='col-md-4'>
-      <Link to={`/detail/${count - 1}`}>
-        <img src={ 'https://codingapple1.github.io/shop/shoes' + count + '.jpg'} width='100%'></img>
-      </Link>
+    <div className='col-md-4' onClick={ () => { history.push(`/detail/${id}`)} }>
+      <img src={ `https://codingapple1.github.io/shop/shoes${id + 1}.jpg`} width='100%'></img>
       <h4>{ props.shoe.title }</h4>
       <p>{ props.shoe.content }</p>
       <Test></Test>
