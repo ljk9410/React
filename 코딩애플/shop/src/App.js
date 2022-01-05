@@ -1,12 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, lazy, Suspense } from 'react';
 import { Navbar, Container, Nav, NavDropdown,Form, FormControl, Button } from 'react-bootstrap';
 import './App.css';
 import shoeData from './data.js';
 import { Link, Route, Switch } from 'react-router-dom';
-import Detail from './components/Detail.js';
 import axios from 'axios';
-import Cart from './components/Cart.js';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
+// lazy loading
+import Cart from './components/Cart.js';
+
+// import Detail from './components/Detail.js';
+let Detail = lazy(() => { return import('./components/Detail.js') });
 
 
 let 재고context = React.createContext();
@@ -111,7 +115,9 @@ function App() {
         </Route>
 
         <Route path='/detail/:id'>
-          <Detail shoes={ shoes } 재고={ 재고 } 재고변경={ 재고변경 }/>
+          <Suspense fallback={<div>로딩중이에요</div>}>
+            <Detail shoes={ shoes } 재고={ 재고 } 재고변경={ 재고변경 }/>
+          </Suspense>
         </Route>
         {/* <Route path="/detail" component={ Detail }></Route> */}
 
@@ -149,5 +155,4 @@ function Loading() {
     <div>로딩중입니다...</div>
   )
 }
-
 export default App;
