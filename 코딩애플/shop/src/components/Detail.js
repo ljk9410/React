@@ -38,6 +38,26 @@ function Detail(props) {
   })
 
 
+  useEffect(() => {
+    let data = localStorage.getItem('둘러본상품');
+    let parseData;
+
+    if (localStorage.length === 0) {
+      localStorage.setItem('둘러본상품', JSON.stringify([parseInt(id)]));
+    }
+    else {
+      let set;
+      let uniqueData;
+      parseData = JSON.parse(data);
+      parseData.push(parseInt(id));
+      set = new Set(parseData);
+      uniqueData = [...set];
+      console.log(uniqueData);
+
+      localStorage.setItem('둘러본상품', JSON.stringify(uniqueData));
+    }
+  }, [])
+
 
   return (
   <div className="container">
