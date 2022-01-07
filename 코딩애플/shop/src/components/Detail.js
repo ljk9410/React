@@ -18,6 +18,7 @@ let Title = styled.h4`
 function Detail(props) {
   let [alert, changeAlert] = useState(true);
   let [inputData, changeInputData] = useState('');
+  let [recentItem, changeRecentItem] = useState(JSON.parse(localStorage.getItem('둘러본상품')));
   let [tap, changeTap] = useState(0);
   let [스위치, change스위치] = useState(false);
 
@@ -52,7 +53,6 @@ function Detail(props) {
       parseData.push(parseInt(id));
       set = new Set(parseData);
       uniqueData = [...set];
-      console.log(uniqueData);
 
       localStorage.setItem('둘러본상품', JSON.stringify(uniqueData));
     }
@@ -97,6 +97,7 @@ function Detail(props) {
       </div>
     </div>
 
+
     <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0">
       <Nav.Item>
         <Nav.Link eventKey="link-0" onClick={()=>{ change스위치(false); changeTap(0) }}>Active</Nav.Link>
@@ -113,6 +114,7 @@ function Detail(props) {
   </div> 
   )
 }
+
 
 function Remain(props) {
   return (
