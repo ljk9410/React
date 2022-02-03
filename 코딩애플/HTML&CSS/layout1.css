@@ -10,10 +10,44 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     padding: 1px;
+    position: relative;
 }
 
 .main-title {
     color: white;
     font-size: 40px;
-    margin-top: 40px;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.main-content {
+    color: white;
+    text-align: center;
+}
+
+.main-button {
+    background-color: rgba(16, 184, 250, 0.89);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100px;
+}
+
+.float-box {
+    width: 60%;
+    padding: 40px 80px;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    top: -50px;
 }
